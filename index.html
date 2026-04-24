@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENAI | Smart Home IoT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="particle-container">
+        <div class="orb-glow"></div>
+    </div>
+
+    <header class="main-header">
+        <div class="theme-switch-wrapper">
+            <span class="mode-label">DARK</span>
+            <label class="theme-switch">
+                <input type="checkbox" id="theme-toggle">
+                <div class="slider"></div>
+            </label>
+            <span class="mode-label">LIGHT</span>
+        </div>
+
+        <div class="header-content">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/SENAI_S%C3%A3o_Paulo_logo.png" alt="SENAI São Paulo" class="logo-senai">
+            
+            <div class="header-text">
+                <h1 class="titulo">Smart Home <span class="badge">IoT</span></h1>
+                <p class="subtitulo">Laboratório de Automação Residencial Inteligente</p>
+            </div>
+            
+            <div class="system-status">
+                <span class="status-indicator"></span>
+                STATUS: <span id="status-display">ONLINE</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="nexus-grid">
+        <div class="energy-orb-wrapper">
+            <div class="energy-orb" id="orb-geral">
+                <div class="inner-glow"></div>
+                <div class="core-icon">🏠</div>
+                <svg class="energy-ring" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="48" class="ring-track"></circle>
+                    <circle cx="50" cy="50" r="48" class="ring-fill"></circle>
+                </svg>
+            </div>
+            <label>GERAL</label>
+        </div>
+
+        <div class="energy-orb-wrapper">
+            <div class="energy-orb" id="orb-piscar">
+                <div class="inner-glow"></div>
+                <div class="core-icon">⚡</div>
+                <svg class="energy-ring" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="48" class="ring-track"></circle>
+                    <circle cx="50" cy="50" r="48" class="ring-fill"></circle>
+                </svg>
+            </div>
+            <label>MODO PISCAR</label>
+        </div>
+
+        <div class="energy-orb-wrapper">
+            <div class="energy-orb" id="orb-sala">
+                <div class="inner-glow"></div>
+                <div class="core-icon">💡</div>
+                <svg class="energy-ring" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="48" class="ring-track"></circle>
+                    <circle cx="50" cy="50" r="48" class="ring-fill"></circle>
+                </svg>
+            </div>
+            <label>SALA DE ESTAR</label>
+        </div>
+
+        <div class="energy-orb-wrapper">
+            <div class="energy-orb" id="orb-cozinha">
+                <div class="inner-glow"></div>
+                <div class="core-icon">💡</div>
+                <svg class="energy-ring" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="48" class="ring-track"></circle>
+                    <circle cx="50" cy="50" r="48" class="ring-fill"></circle>
+                </svg>
+            </div>
+            <label>COZINHA</label>
+        </div>
+
+        <div class="energy-orb-wrapper">
+            <div class="energy-orb" id="orb-quarto1">
+                <div class="inner-glow"></div>
+                <div class="core-icon">💡</div>
+                <svg class="energy-ring" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="48" class="ring-track"></circle>
+                    <circle cx="50" cy="50" r="48" class="ring-fill"></circle>
+                </svg>
+            </div>
+            <label>QUARTO 01</label>
+        </div>
+
+        <div class="energy-orb-wrapper">
+            <div class="energy-orb" id="orb-quarto2">
+                <div class="inner-glow"></div>
+                <div class="core-icon">💡</div>
+                <svg class="energy-ring" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="48" class="ring-track"></circle>
+                    <circle cx="50" cy="50" r="48" class="ring-fill"></circle>
+                </svg>
+            </div>
+            <label>QUARTO 02</label>
+        </div>
+    </main>
+
+    <script src="mqttws31.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

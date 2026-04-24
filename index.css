@@ -1,0 +1,258 @@
+/* --- CONFIGURAÇÕES DE TEMA --- */
+:root {
+    --senai-red: #ff0000;
+    --bg-body: #0a0c10;
+    --bg-header: rgba(255, 255, 255, 0.02);
+    --text-main: #ffffff;
+    --text-sub: rgba(255, 255, 255, 0.4);
+    --orb-base: rgba(255, 255, 255, 0.03);
+    --orb-border: rgba(255, 255, 255, 0.1);
+    --shadow-main: rgba(0, 0, 0, 0.6);
+}
+
+body.light-mode {
+    --bg-body: #f0f4f8;
+    --bg-header: rgba(0, 0, 0, 0.03);
+    --text-main: #1d1d1b;
+    --text-sub: rgba(0, 0, 0, 0.6);
+    --orb-base: rgba(0, 0, 0, 0.02);
+    --orb-border: rgba(0, 0, 0, 0.08);
+    --shadow-main: rgba(0, 0, 0, 0.1);
+    /* Logo original no Light Mode */
+    --logo-filter: none; 
+}
+
+* {
+    box-sizing: border-box;
+    transition: background-color 0.4s ease, color 0.4s ease, filter 0.4s ease;
+}
+
+body {
+    margin: 0;
+    background: var(--bg-body);
+    color: var(--text-main);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* --- HEADER CENTRALIZADO --- */
+.main-header {
+    width: 100%;
+    background: var(--bg-header);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centralização horizontal absoluta */
+    justify-content: center;
+    border-bottom: 1px solid var(--orb-border);
+    box-shadow: 0 10px 40px var(--shadow-main);
+    position: relative;
+    z-index: 10;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 900px;
+}
+
+.logo-senai {
+    height: 70px;
+    margin-bottom: 30px;
+    filter: var(--logo-filter); /* Muda conforme o tema */
+    transition: transform 0.3s ease;
+}
+
+.logo-senai:hover {
+    transform: scale(1.05);
+}
+
+.titulo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    letter-spacing: 6px;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.badge {
+    background: var(--senai-red);
+    color: white;
+    padding: 2px 15px;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    vertical-align: middle;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+.subtitulo {
+    color: var(--text-sub);
+    font-size: 1rem;
+    margin-top: 15px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* --- ALTERNADOR DE MODO (CANTO DIREITO) --- */
+.theme-switch-wrapper {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mode-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    color: var(--text-sub);
+}
+
+.theme-switch {
+    width: 50px;
+    height: 26px;
+    position: relative;
+    display: inline-block;
+}
+
+.theme-switch input { display: none; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #333;
+    border-radius: 34px;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px; width: 18px;
+    left: 4px; bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+input:checked + .slider { background-color: var(--senai-red); }
+input:checked + .slider:before { transform: translateX(24px); }
+
+/* --- GRID DE ORBES --- */
+.nexus-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 80px;
+    margin: 80px 0;
+    padding: 0 20px;
+}
+
+.energy-orb-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.energy-orb-wrapper label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    color: var(--text-sub);
+}
+
+.energy-orb {
+    width: 170px; height: 170px;
+    background: var(--orb-base);
+    border: 1px solid var(--orb-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 20px 40px var(--shadow-main);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.energy-orb:hover { transform: scale(1.1); }
+
+.core-icon {
+    font-size: 55px;
+    filter: grayscale(1) opacity(0.3);
+    transition: 0.5s;
+    z-index: 2;
+}
+
+/* ANEL DE ENERGIA SVG */
+.energy-ring {
+    position: absolute;
+    width: 120%; height: 120%;
+    transform: rotate(-90deg);
+    pointer-events: none;
+}
+
+.ring-track { fill: none; stroke: var(--orb-border); stroke-width: 2; }
+.ring-fill {
+    fill: none; stroke: var(--senai-red); stroke-width: 4;
+    stroke-dasharray: 301; stroke-dashoffset: 301;
+    filter: drop-shadow(0 0 10px var(--senai-red));
+    transition: 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ESTADOS ATIVOS */
+.orb-active {
+    box-shadow: 0 0 60px rgba(255, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.orb-active .ring-fill { stroke-dashoffset: 0; }
+.orb-active .core-icon { filter: grayscale(0) opacity(1); transform: scale(1.2); }
+
+/* STATUS */
+.system-status {
+    margin-top: 30px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    color: var(--text-sub);
+    letter-spacing: 2px;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 10px; height: 10px;
+    background: #d32c0b;
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 0 0 10px #d42b06;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; }
+}
+
+.particle-container { position: fixed; width: 100vw; height: 100vh; z-index: -1; }
+.orb-glow {
+    position: absolute; width: 600px; height: 600px;
+    background: var(--senai-red); filter: blur(150px);
+    opacity: 0.05; top: -100px; left: -100px;
+}
+
+@media (max-width: 768px) {
+    .nexus-grid { grid-template-columns: 1fr; gap: 50px; }
+}
+
+
+
