@@ -1,20 +1,3 @@
-/* --- INJETANDO CSS DA VIBRAÇÃO VISUAL (TELA) --- */
-const styleShake = document.createElement('style');
-styleShake.innerHTML = `
-    @keyframes shakeEffect {
-        0% { transform: translate(1px, 1px) rotate(0deg); }
-        20% { transform: translate(-2px, -1px) rotate(-1deg); }
-        40% { transform: translate(2px, 1px) rotate(1deg); }
-        60% { transform: translate(-1px, 2px) rotate(-1deg); }
-        80% { transform: translate(1px, -1px) rotate(1deg); }
-        100% { transform: translate(0, 0) rotate(0deg); }
-    }
-    .shake-screen {
-        animation: shakeEffect 0.2s ease-in-out;
-    }
-`;
-document.head.appendChild(styleShake);
-
 /* --- CONFIGURAÇÕES DE ÁUDIO --- */
 const somSirene = new Audio('som.mp3'); 
 somSirene.loop = true; // Mantém a sirene tocando em loop até mandarmos parar
@@ -60,14 +43,9 @@ document.querySelectorAll('.energy-orb').forEach(orb => {
             somSirene.play().catch(erro => console.log("Áudio bloqueado pelo navegador:", erro));
         }
 
-        // DISPARA A VIBRAÇÃO FÍSICA E VISUAL IMEDIATA (MOBILE/TOUCH)
+        // DISPARA APENAS A VIBRAÇÃO FÍSICA IMEDIATA (MOBILE/TOUCH)
         if (e.type === 'touchstart') {
             if (navigator.vibrate) navigator.vibrate(50); 
-            
-            document.body.classList.remove('shake-screen');
-            void document.body.offsetWidth; 
-            document.body.classList.add('shake-screen'); 
-            setTimeout(() => document.body.classList.remove('shake-screen'), 200);
         }
 
         isCharging = true;
@@ -84,6 +62,7 @@ document.querySelectorAll('.energy-orb').forEach(orb => {
                 isCharging = false;
                 orb.classList.remove('orb-charging');
                 
+                // Vibração de sucesso ao completar 1 segundo
                 if (e.type === 'touchstart' && navigator.vibrate) {
                     navigator.vibrate([100, 50, 100]); 
                 }
